@@ -1,21 +1,22 @@
 class Api::GoalsController < ApplicationController
-
+before_action :authenticate_user
 
   def index
-    @goals = Goal.where(user_id: 4)
+    @goals = current_user.goals.order(id: :desc)
     render 'index.json.jbuilder'
   end
 
 
   def show
-    @goal = Goal.find(params[:id])
+    # @goal = Goal.find(params[:id])
+    @goal =  current_user.goals.find(params[:id])
     render 'show.json.jbuilder'
   end
 
   def create
 
      @goal = Goal.new(
-    user_id: params["user_id"],
+    user_id: current_user.id,
     subject: params["subject"],
     goal: params["goal"],
     end_date: params["end_date"],
@@ -32,8 +33,7 @@ class Api::GoalsController < ApplicationController
   end
 
   def update
-   @goal = Goal.find(params[:id])
-
+   @goal =  current_user.goals.find(params[:id])
     @goal.subject = params["subject"] || @goal.subject
     @goal.goal = params["goal"] || @goal.goal
     @goal.end_date = params["end_date"] || @goal.end_date
@@ -49,7 +49,9 @@ class Api::GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
+    @goal =  current_user.goals.find(params[:id])
     @goal.destroy
+
+    render json: {message: 'Another goal done did. Thank you. Next.'}, status: :created
   end
 end

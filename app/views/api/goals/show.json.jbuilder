@@ -1,1 +1,1 @@
-json.partial! "goal.json.jbuilder", goal: @goal
+json.partial! "goal", goal: @goal

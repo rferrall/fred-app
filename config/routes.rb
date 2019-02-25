@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   
   namespace :api do
 
+    #sessions
+    post "/sessions" => "sessions#create"
+
     #messages
     post "/messages" => "messages#create"
 
     #users
     get "/users/:id" => "users#show"
-    # post "/users" => "users#create"
+    post "/users" => "users#create"
     patch "/users/:id" => "users#update"
     delete "/users/:id" => "users#destroy"
 

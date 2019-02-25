@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # has_secure_password
-  validates :email, presence: true, uniqueness: true
+  has_secure_password
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
 
   
   def conversations
@@ -9,6 +9,11 @@ class User < ApplicationRecord
   
   has_many :messages
   has_many :goals
+
+  def active_goal
+    goals.find_by(active: true)
+    
+  end
 
   # validates_uniqueness_of :sender_id, :scope => :recipient_id
   
