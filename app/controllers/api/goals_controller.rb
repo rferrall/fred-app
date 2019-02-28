@@ -2,7 +2,8 @@ class Api::GoalsController < ApplicationController
 before_action :authenticate_user
 
   def index
-    @goals = current_user.goals.order(id: :desc)
+    @goals = current_user.goals
+    # .order(id: :desc)
     render 'index.json.jbuilder'
   end
 
