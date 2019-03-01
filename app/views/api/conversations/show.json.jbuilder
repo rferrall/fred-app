@@ -1,5 +1,5 @@
 
-
+json.id @conversation.id
 
 json.sender do
   json.partial! @conversation.sender, partial: "api/users/user", as: :user

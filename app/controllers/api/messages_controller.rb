@@ -3,16 +3,20 @@ class Api::MessagesController < ApplicationController
 
 
   def create
-    @message = @conversation.messages.new(message_params)
+    @message = Message.new(
+      body: params[:body],
+      user_id: current_user.id,
+      conversation_id: params[:conversation_id]
+      )
     if @message.save
-      render '_conversation'
+      render 'show.json.jbuilder'
+    else
+      render json: {errors: @message.errors.full_messages}, status: :unprocessable_entity
     end
     
   end
 
-  private
 
-  def message_params
-    params.require(:message).permit(:body, :user_id)
-  end
+
+ 
 end
