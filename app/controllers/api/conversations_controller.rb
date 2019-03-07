@@ -11,29 +11,40 @@ class Api::ConversationsController < ApplicationController
     @conversation.messages.sort
     render 'show.json.jbuilder'
   end
-  ##############################################
-# needs to check if a convo already exists between two users.
-# # if not THEN create a new conversation. 
+  
 
-#   def create
-#     # available_partners = (@user???).where(:user != :current_user)
-#     if Conversation.between(params[:sender_id],params[:recipient_id])
-#      .present? 
-#       @conversation = Conversation.between(params[:sender_id],
-#        params[:recipient_id]).first
-#     else
-#       @conversation = Conversation.new(
-#         sender_id: current_user.id,
-#         # recipient_id: user.id.rand(user.conversations < 2)),
-#         recipient_id: available_partners.sample)
-#     end
-#     if @conversation.save
-#         render 'show.json.jbuilder'
-#       else
-#         render json: {errors: @conversation.errors.full_messages}, status: :unprocessable_entity
-#     end
-#     # redirect_to conversation_messages_path(@conversation)
-#   end
+  def create
+    matched_user = nil
+    users = User.where("id != ?", current_user.id).select{|user| user.active_goal} #.select used like map to filter through users. used because it's a model method and not an attribute on the model.
+    users.each do |user|
+      if user.conversations.count == 0 
+        matched_user = user #want loop to break if find 0 convo user, else keep running.
+        break
+      elsif user.conversations.count < 3 
+        matched_user = user #sets new variable not a return because want loop to run to find least amt of convos user.
+      end
+    end
+    if !matched_user
+      matched_user = users.sample
+    end
+
+
+    if Conversation.between(current_user.id, matched_user.id)
+     .present? 
+      @conversation = Conversation.between(current_user.id,
+       matched_user.id).first
+    else
+      @conversation = Conversation.new(
+        sender_id: current_user.id,
+        recipient_id: matched_user.id)
+    end
+    if @conversation.save
+        render 'show.json.jbuilder'
+      else
+        render json: {errors: @conversation.errors.full_messages}, status: :unprocessable_entity
+    end
+    # redirect_to conversation_messages_path(@conversation)
+  end
 
 
 end

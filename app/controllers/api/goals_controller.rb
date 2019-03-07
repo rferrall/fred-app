@@ -15,6 +15,10 @@ before_action :authenticate_user
   end
 
   def create
+    active = params["active"]
+    if current_user.goals.find_by(active: true)
+      active = false
+    end
 
      @goal = Goal.new(
     user_id: current_user.id,
@@ -22,8 +26,7 @@ before_action :authenticate_user
     goal: params["goal"],
     end_date: params["end_date"],
     frequency: params["frequency"],
-    #hardcode it to active if goals.active < 1, else false.
-    active: false
+    active: active
     
     )
    if @goal.save
@@ -35,31 +38,26 @@ before_action :authenticate_user
   end
 
   def update
-   @goal =  Goal.find(params[:id])
-      active_goal = current_user.goals.find_by(active: true)
+    active = params["active"]
+    active_goal = current_user.goals.find_by(active: true)
+    if active 
       if active_goal
-        warning = "Can only have one active goal."
-      else
-        @goal.active = params["active"]
+        active_goal.update(active: false)
       end
-   
-
-
-
-
-
-
-
-
-
+     active = true
+    else
+      active = false
+    end
+    @goal =  Goal.find(params[:id])
     @goal.subject = params["subject"] || @goal.subject
     @goal.goal = params["goal"] || @goal.goal
     @goal.end_date = params["end_date"] || @goal.end_date
     @goal.frequency = params["frequency"] || @goal.frequency
-  
+    @goal.active = active
+     
 
 
-    if @goal.save && !active_goal
+    if @goal.save 
       render 'show.json.jbuilder'
     else
       render json:{errors: @goal.errors.full_messages}, status: :unprocessable_entity
