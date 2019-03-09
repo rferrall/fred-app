@@ -11,8 +11,17 @@ class User < ApplicationRecord
   has_many :goals
 
   def active_goal
-    goals.find_by(active: true)
-    
+    # goals.find_by("active = ? AND end_date > ?", true, Time.now )
+    active_goal = goals.find_by(active: true)
+    if active_goal
+      if active_goal.end_date < Date.today
+        active_goal.update(active: false) 
+        return nil #breaks the function, so it won't return active_goal anyway.
+      else 
+        return active_goal
+      end
+    end
+    return nil
   end
 
  

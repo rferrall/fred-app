@@ -3,6 +3,7 @@ class Api::ConversationsController < ApplicationController
 
   def index
     @conversations = current_user.conversations.order(created_at: :desc)
+  
     render 'index.json.jbuilder'
   end
 
@@ -27,6 +28,9 @@ class Api::ConversationsController < ApplicationController
     if !matched_user
       matched_user = users.sample
     end
+
+    ###if current_user has already created a conversation today then no conversation today.
+    
 
 
     if Conversation.between(current_user.id, matched_user.id)

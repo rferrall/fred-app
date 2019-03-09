@@ -10,3 +10,4 @@ json.array! @conversations.each do |conversation|
 
 end
 
+
