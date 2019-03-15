@@ -3,17 +3,21 @@ json.id @conversation.id
 
 json.sender do
   json.partial! @conversation.sender, partial: "api/users/user", as: :user
-  json.goal do
-    json.partial! @conversation.sender.active_goal, partial: "api/goals/goal", as: :goal
+
+  if @conversation.sender.active_goal
+    json.goal do
+      json.partial! @conversation.sender.active_goal, partial: "api/goals/goal", as: :goal
+    end
   end
 
 end
 
 json.recipient do
   json.partial! @conversation.recipient, partial: "api/users/user", as: :user
-
-  json.goal do
-    json.partial! @conversation.recipient.active_goal, partial: "api/goals/goal", as: :goal
+  if @conversation.recipient.active_goal
+    json.goal do
+      json.partial! @conversation.recipient.active_goal, partial: "api/goals/goal", as: :goal
+    end
   end
 end
 
@@ -34,5 +38,5 @@ end
 
 json.messages do 
   json.array! @conversation.messages, partial: "api/messages/message", as: :message
-  
+    
 end

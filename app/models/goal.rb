@@ -14,6 +14,7 @@ class Goal < ApplicationRecord
     
   end
 
+
   
 
  # def active_goal

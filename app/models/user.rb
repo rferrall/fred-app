@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :goals
 
   def active_goal
-    # goals.find_by("active = ? AND end_date > ?", true, Time.now )
+    
     active_goal = goals.find_by(active: true)
     if active_goal
       if active_goal.end_date < Date.today
