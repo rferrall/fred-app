@@ -1,6 +1,7 @@
 
 json.id @conversation.id
-json.created_at conversation.created_at
+json.created_at @conversation.created_at
+json.updated_at @conversation.updated_at
 
 json.sender do
   json.partial! @conversation.sender, partial: "api/users/user", as: :user
