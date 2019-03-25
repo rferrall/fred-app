@@ -35,7 +35,7 @@ class Api::ConversationsController < ApplicationController
      .present? 
       @conversation = Conversation.between(current_user.id,
        matched_user.id).first
-    elsif Conversation.where("sender_id = ? AND created_at === ?", current_user.id, Date.today)
+    elsif Conversation.where("sender_id = ? AND created_at == ?", current_user.id, Date.today)
       return render json: {errors: 'Conversation already started today.'}, status: :bad_request
        
     else

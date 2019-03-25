@@ -8,7 +8,7 @@ class User < ApplicationRecord
     Conversation.where("sender_id = ? OR recipient_id = ?", id,id)
   end
   
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_many :goals
 
   def active_goal
