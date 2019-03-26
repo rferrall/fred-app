@@ -22,7 +22,7 @@ require 'twilio-ruby'
       if twilio_phone_number
         @client = Twilio::REST::Client.new account_sid, auth_token
         message = @client.messages.create(
-            body: "Alert from Fred => You have a new message from #{current_user.name}",
+            body: "FRED => You have a new message from #{current_user.name}. Have a great day!",
             to: twilio_phone_number,    
             from: "+19523334671") 
       end
