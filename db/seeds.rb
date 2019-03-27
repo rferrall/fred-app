@@ -1,7 +1,66 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Conversation.create!([
+  {sender_id: 3, recipient_id: 4},
+  {sender_id: 4, recipient_id: 1},
+  {sender_id: 1, recipient_id: 3},
+  {sender_id: 3, recipient_id: 6},
+  {sender_id: 11, recipient_id: 6},
+  {sender_id: 11, recipient_id: 4},
+  {sender_id: 15, recipient_id: 4},
+  {sender_id: 3, recipient_id: 15},
+  {sender_id: 11, recipient_id: 15},
+  {sender_id: 11, recipient_id: 1},
+  {sender_id: 1, recipient_id: 6}
+])
+Goal.create!([
+  {user_id: 4, end_date: "2019-08-22 17:00:00", frequency: "weekly", goal: "find a job with my new skills. once i graduate from my program I want to find a job in my new field and move cities. I'd love some support.", subject: "Work, Work, Work, Work, Work", active: false},
+  {user_id: 2, end_date: "2019-05-31 00:00:00", frequency: "every two weeks", goal: "it's been years and I want to refresh myself on how to survive and enjoy the water.", subject: "Learn to swim", active: true},
+  {user_id: 3, end_date: "2019-04-30 00:00:00", frequency: "twice weekly", goal: "I want to travel. I keep holding off buying the tickets. Check on me?", subject: "Bucket List Item", active: true},
+  {user_id: 14, end_date: "2019-04-30 00:00:00", frequency: "weekly", goal: "whitney houston has me inspired. I need to move and groove more.", subject: "wanna dance with somebody", active: true},
+  {user_id: 6, end_date: "2019-05-19 00:00:00", frequency: "weekly", goal: "I would love to walk 10,000 steps daily", subject: "Beast mode", active: true},
+  {user_id: 11, end_date: "2019-04-01 00:00:00", frequency: "weekly", goal: "The world is running low on cereal. Leave some for other people", subject: "Eat Less Cereal", active: false},
+  {user_id: 11, end_date: "2019-05-31 00:00:00", frequency: "weekly", goal: "screw the world. I claim cereal domination.", subject: "Eat More cereal", active: false},
+  {user_id: 1, end_date: "2019-05-05 00:00:00", frequency: "weekly", goal: "I need to be better about meditation. Ask me how it's going.", subject: "OM", active: false},
+  {user_id: 1, end_date: "2019-05-15 00:00:00", frequency: "weekly", goal: "I spend WAY too much time on the phone before bed. I would like to spend less and actually read or meditate or just spend more time away from the phone.", subject: "Put Down the Phone", active: true},
+  {user_id: 11, end_date: "2019-06-30 00:00:00", frequency: "weekly", goal: "I haven't drawn in ages and I'd like to make more space in my life to get my art on. Help keep me on track please.", subject: "picasso much?", active: false},
+  {user_id: 11, end_date: "2019-03-31 00:00:00", frequency: "weekly", goal: "i wanna do more things", subject: "Doing all the things", active: true},
+  {user_id: 1, end_date: "2019-03-15 17:00:00", frequency: "every  week", goal: "I've been having trouble getting my liter of water a day. I'm so good when I travel, but not now.", subject: "Water Me", active: false},
+  {user_id: 15, end_date: "2019-03-31 00:00:00", frequency: "weekly", goal: "apply to three new jobs a day and ramp up my job search.", subject: "Work Work Work Work Work", active: true},
+  {user_id: 3, end_date: "2019-06-05 00:00:00", frequency: "weekly", goal: "Listen more than I talk and be more patient will my co-workers. I am frustrated at work, and taking it out on them. I don't want to ruin those relationships.", subject: "Patience is a Virtue", active: false},
+  {user_id: 4, end_date: "2019-03-31 12:00:00", frequency: "weekly", goal: "I'm in a coding bootcamp, learning a full-stack program to change my career prospects. I would love some help staying positive and motivated as I learn all this stuff.", subject: "Life Changes", active: false},
+  {user_id: 4, end_date: "2019-05-31 00:00:00", frequency: "weekly", goal: "I would love to walk 10,000 steps daily", subject: "Beast mode", active: true},
+  {user_id: 2, end_date: "2019-03-31 12:00:00", frequency: "weekly", goal: "I need inspiration to get outside and off the couch. Too much netflix and chill for this lady.", subject: "Fresh Air", active: false}
+])
+Message.create!([
+  {user_id: 1, conversation_id: 1, body: "Hi Blue!It's a pleasure to meet you. I'm Pink. How are you doing today? I see that you're wanting to spend more time outside. Can you tell me more about what you want to do?"},
+  {user_id: 2, conversation_id: 1, body: "I see that you want to focus on getting more water into your routine or your day. How is that going?"},
+  {user_id: 2, conversation_id: 1, body: "Hello Pink!It's a pleasure to meet you too. I'm doing well. I know it's the middle of winter, but I'd really like to find a way to spend more time outside. Maybe hiking? Just walking in general. I really just need to be reminded to do it. lol."},
+  {user_id: 3, conversation_id: 2, body: "Hi Purple. I'm Yellow. How was class this week?"},
+  {user_id: 4, conversation_id: 2, body: "Hi Yellow. Class was good. I'm just getting started on my capstone project. Putting everything that we've learned so far into practice. It's a little nerve-wracking but I'm staying positive. I see you want to travel more. I love to travel. What kind of travel do you want to do?"},
+  {user_id: 1, conversation_id: 1, body: "How are you doing today?"},
+  {user_id: 1, conversation_id: 1, body: "I saw a great article about..."},
+  {user_id: 3, conversation_id: 2, body: "I would like to start with maybe a small trip to Chicago or San Francisco"},
+  {user_id: 3, conversation_id: 9, body: "That's such a great goal! How's it going this week?"},
+  {user_id: 15, conversation_id: 21, body: "Hello! Pleased to meet you. I'm looking at applying for jobs. Sounds like we'll be a good fit. How's your week going?"},
+  {user_id: 4, conversation_id: 21, body: "so happy to meet you too. I'm having a good week. You?"},
+  {user_id: 11, conversation_id: 20, body: "Hi Sky!"},
+  {user_id: 11, conversation_id: 20, body: "I hope you're having a wicked awesome day. It's beautiful in Minneapolis."},
+  {user_id: 11, conversation_id: 20, body: "Spring has sprung."},
+  {user_id: 11, conversation_id: 20, body: "been on any hikes or bike rides yet?"},
+  {user_id: 11, conversation_id: 20, body: "maybe a meetup?"},
+  {user_id: 11, conversation_id: 20, body: "see any robins?"},
+  {user_id: 2, conversation_id: 20, body: "I did take the dog for a walk yesterday."},
+  {user_id: 2, conversation_id: 20, body: "It's gorgeous out today."},
+  {user_id: 2, conversation_id: 20, body: "I'm heading out now."},
+  {user_id: 4, conversation_id: 2, body: "t-minus one week of class. things are coming together and I am finally able to solve some problems on my own which feels great. I'm actually heading to chicago in a couple of weeks to visit my cousin. they just bought a house outside of chicago and will be moving at the end of april so this is kind of a last hurrah iin their space. i've visited a few times before and they are really well located. they're great. and the city is great. you should definitely give chicago a try."},
+  {user_id: 15, conversation_id: 24, body: "Hi Black. So good to meet you. Tell me what kind of stuff you have going on and where you think you'll fit in some art? I bet you have some ideas. \nA bit about myself...I love art too. I especially enjoy water color and took it up while travelling around south America. I found it was a great way to slow down and enjoy slower travel. I'm rubbish at drawing or painting anything moving though. much better at fountains or trees that don't move. lol\n\n-rachel"},
+  {user_id: 1, conversation_id: 25, body: "I think that is such a great goal! What do you like to draw?\n\nFor myself, I think I could try my hand at art instead of being on my phone all the time. Do you have any recommendations for getting started for an absolute beginner? Maybe crayons :)\n"}
+])
+User.create!([
+  {name: "Minty", email: "green@gmail.com", image: "https://images.pexels.com/photos/38012/pexels-photo-38012.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", password_digest: "$2a$10$3nv0HW0Ex0Pjea60NrOzsuno11oV7cuu/74.1wBsoz/LCTSnds5ie", phone_number: "+17632422868"},
+  {name: "yellow", email: "yellow@gmail.com", image: "https://images.pexels.com/photos/386025/pexels-photo-386025.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", password_digest: "$2a$10$8eUE41mb6IDLCuyBSZjttOodAyt1NTji/og.NrOSZZIRA.XqmL7n2", phone_number: "+17632422868"},
+  {name: "Blackish", email: "black@gmail.com", image: "https://images.pexels.com/photos/1083617/pexels-photo-1083617.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", password_digest: "$2a$10$uVds298UbXGejgGRlGaspeoCHie/c5ALPirrjSkywJiXaKvBs6pyK", phone_number: "+17632422868"},
+  {name: "Superman", email: "superman@gmail.com", image: "https://images.unsplash.com/photo-1455659817273-f96807779a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", password_digest: "$2a$10$RGMhNt4eViOMMZnQEjeIYOve1DiKpuwWAeOGCcqFDkF4jXYVqcLku", phone_number: "+17632422868"},
+  {name: "Royal Purple", email: "purple@gmail.com", image: "https://images.pexels.com/photos/1083617/pexels-photo-1083617.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", password_digest: "$2a$10$oYGb39vSfin5MUSX7uLFNeUw5rTQJi2bZYTp3ZvtJx8ejrvsG5Brq", phone_number: "+18053002432"},
+  {name: "Red", email: "red@gmail.com", image: "https://images.unsplash.com/photo-1464692805480-a69dfaafdb0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", password_digest: "$2a$10$HPuPoAQfMMiqf57o2omVTunpgg0CuwQ8.DkETfxMTdiVRMFkoIbrG", phone_number: "+17632422868"},
+  {name: "Hot Pink", email: "hotpink@gmail.com", image: "https://images.unsplash.com/photo-1472698938026-79bed881e5b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", password_digest: "$2a$10$tiZZRSiTdc3Dd5N5iPSyP.EPh2Bhdzt65Gv6RhsUueuLSVElz0tRq", phone_number: "+17632422868"}
+])

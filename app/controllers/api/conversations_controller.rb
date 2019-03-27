@@ -23,6 +23,7 @@ class Api::ConversationsController < ApplicationController
         break
       elsif user.conversations.count < 3 
         matched_user = user #sets new variable not a return because want loop to run to find least amt of convos user.
+        break
       end
     end
     if !matched_user
@@ -35,7 +36,7 @@ class Api::ConversationsController < ApplicationController
      .present? 
       @conversation = Conversation.between(current_user.id,
        matched_user.id).first
-    # elsif Conversation.where("sender_id = ? AND created_at = ?", current_user.id, Date.today) != true
+    # elsif Conversation.where("sender_id = ? AND created_at = ?", current_user.id, Date.today) 
     #   return render json: {errors: 'Conversation already started today.'}, status: :bad_request
        
     else

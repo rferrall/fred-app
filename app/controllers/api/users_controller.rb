@@ -4,6 +4,7 @@ before_action :authenticate_user, except: [:create]
     user = User.new(
       name: params[:name],
       email: params[:email],
+      phone_number: params[:phone_number],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
       image: params[:image]
@@ -29,6 +30,7 @@ before_action :authenticate_user, except: [:create]
 
     @user.name = params["name"] || @user.name
     @user.email = params["email"] || @user.email
+    @user.phone_number = params["phone_number"] || @user.phone_number
     @user.image = params["image"] || @user.image
 
 
